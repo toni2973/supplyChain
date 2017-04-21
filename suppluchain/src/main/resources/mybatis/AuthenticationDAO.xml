@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.toni.supplychain.DAO.AuthenticationDAO">
+
+
+    <insert id="insertAuthentication"  parameterType="com.nju.toni.supplychain.entity.Authentication" useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO Authentication(ID,username,password)VALUES(#{ID},#{username},#{password})
+    </insert>
+
+    <select id="findAuthenticationById" resultType="com.nju.toni.supplychain.entity.Authentication" parameterType="int">
+        SELECT * FROM Authentication WHERE ID = #{ID}
+    </select>
+
+    <update id="updateAuthentication" parameterType="com.nju.toni.supplychain.entityAuthentication">
+        update Authentication set password=#{password}where ID=#{ID}
+    </update>
+
+    <delete id="deleteAuthentication" parameterType="int">
+        delete from Authentication where ID=#{ID}
+    </delete>
+
+    <select id="login" resultType="com.nju.toni.supplychain.entity.Authentication" >
+        SELECT * FROM Authentication WHERE username=#{username} and password=#{password}
+    </select>
+
+</mapper>

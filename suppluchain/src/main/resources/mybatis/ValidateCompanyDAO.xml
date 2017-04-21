@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.toni.supplychain.DAO.ValidateCompanyDAO">
+
+
+    <insert id="insertValidateCompany"  parameterType="com.nju.toni.supplychain.entity.ValidateCompany" useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO ValidateCompany(ID,companyID,authenticationID,valitime,result,comment)
+        VALUES(#{ID},#{companyID},#{authenticationID}#{valitime},#{result},#{comment})
+    </insert>
+
+    <select id="findValidateCompanyById" resultType="com.example.entity.ValidateCompany" parameterType="int">
+        SELECT * FROM ValidateCompany WHERE ID = #{ID}
+    </select>
+
+    <update id="updateValidateCompany" parameterType="com.example.entity.ValidateCompany">
+        update ValidateCompany set companyID=#{companyID},authenticationID=#{authenticationID},valitime=#{valitime},result=#{result},comment=#{comment}
+        where ID=#{ID}
+    </update>
+
+    <delete id="deleteValidateCompany" parameterType="int">
+        delete from ValidateCompany where ID=#{ID}
+    </delete>
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.toni.supplychain.DAO.AdminDAO">
+
+
+    <insert id="insertAdmin"  parameterType="com.nju.toni.supplychain.entity.Admin" useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO Admin(ID,username,password)VALUES(#{ID},#{username},#{password})
+    </insert>
+
+    <select id="findAdminById" resultType="com.nju.toni.supplychain.entity.Admin" parameterType="int">
+        SELECT * FROM Admin WHERE ID = #{ID}
+    </select>
+
+    <update id="updateAdmin" parameterType="com.nju.toni.supplychain.entity.Admin">
+        update Admin set password=#{password}where ID=#{ID}
+    </update>
+
+    <delete id="deleteAdmin" parameterType="int">
+        delete from Admin where ID=#{ID}
+    </delete>
+
+    <select id="login" resultType="com.nju.toni.supplychain.entity.Admin" >
+        SELECT * FROM Admin WHERE username=#{username} and password=#{password}
+    </select>
+
+    <select id="isExist" resultType="com.nju.toni.supplychain.entity.Admin" >
+        SELECT * FROM Admin WHERE username=#{username}
+    </select>
+</mapper>

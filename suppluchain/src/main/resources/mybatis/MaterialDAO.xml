@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.toni.supplychain.DAO.MaterialDAO">
+
+
+    <insert id="insertMaterial"  parameterType="com.nju.toni.supplychain.entity.Material" useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO Material(ID,materialID,productionID,amount)
+        VALUES(#{ID},#{materialID},#{productionID},#{amount})
+    </insert>
+
+    <select id="findMaterialById" resultType="com.nju.toni.supplychain.entity.Material" parameterType="int">
+        SELECT * FROM Material WHERE ID = #{ID}
+    </select>
+
+    <update id="updateMaterial" parameterType="com.nju.toni.supplychain.entity.Material">
+        update Material set materialID=#{materialID},productionID=#{productionID},amount=#{amount}
+        where ID=#{ID}
+    </update>
+
+    <delete id="deleteMaterial" parameterType="int">
+        delete from Material where ID=#{ID}
+    </delete>
+
+    <select id="findMaterials" parameterType="int" resultType="com.nju.toni.supplychain.entity.Material">
+        SELECT *FROM Material WHERE productionID=#{productionID}
+
+    </select>
+
+</mapper>

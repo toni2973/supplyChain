@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.toni.supplychain.DAO.CompanyDAO">
+
+
+    <insert id="insertCompany"  parameterType="com.nju.toni.supplychain.entity.Company" useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO Company(email,password,company_name,telphone,address,validate,provefile,validateID,companyID)
+        VALUES (#{email},#{password},#{company_name},#{telphone},#{address},#{validate},#{provefile},#{validateID},#{companyID});
+    </insert>
+
+    <select id="findCompanyById" resultType="com.nju.toni.supplychain.entity.Company" parameterType="int">
+        SELECT * FROM Company WHERE ID = #{ID}
+    </select>
+
+    <update id="updateCompany" parameterType="com.nju.toni.supplychain.entity.Company">
+        update Company set email=#{email},password=#{password},company_name=#{company_name},telphone=#{telphone},
+        address=#{address},validate=#{validate},provefile=#{provefile},validateID=#{validateID},companyID=#{companyID}where ID=#{ID}
+    </update>
+
+    <delete id="deleteCompany" parameterType="int">
+        delete from Company where ID=#{ID}
+    </delete>
+
+    <select id="getNoValidateCompany" resultType="com.nju.toni.supplychain.entity.Company" >
+        SELECT * FROM Company WHERE validate=0
+    </select>
+
+    <select id="getAllCompany" resultType="com.nju.toni.supplychain.entity.Company" >
+        SELECT * FROM Company
+    </select>
+
+
+    <select id="getAllCompany" resultType="com.nju.toni.supplychain.entity.Company" >
+        SELECT * FROM Company WHERE email=#{eamil}
+    </select>
+
+</mapper>

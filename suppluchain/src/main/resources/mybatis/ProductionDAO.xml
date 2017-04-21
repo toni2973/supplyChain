@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.toni.supplychain.DAO.ProductionDAO">
+
+
+    <insert id="insertProduction"  parameterType="com.nju.toni.supplychain.entity.Production" useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO Production(ID,production_name,amount,type,unit,spec,address,expiration,barcode,prove,raw,companyID,validate,validateID,external)
+        VALUES(#{ID},#{Production_name},#{amount},#{type},#{unit},#{spec},#{address},#{expiration},#{barcode},#{prove},#{raw},#{companyID},#{validate},#{validateID,#{external})
+    </insert>
+
+    <select id="findProductionById" resultType="com.nju.toni.supplychain.entity.Production" parameterType="int">
+        SELECT * FROM Production WHERE ID = #{ID}
+    </select>
+
+    <update id="updateProduction" parameterType="com.nju.toni.supplychain.entity.Production">
+        update Production set ID=#{ID},production_name=#{production_name},amount=#{amount},type=#{type},
+         unit=#{unit},spec=#{spec},address=#{address},expiration=#{expiration},barcode=#{barcode},prove=#{prove},raw=#{raw},
+         companyID=#{companyID},validate=#{validate},validateID=#{validateID},external=#{external}
+        where ID=#{ID}
+    </update>
+
+    <delete id="deleteProduction" parameterType="int">
+        delete from Production where ID=#{ID}
+    </delete>
+
+    <select id="getNoValidateProduction" resultType="com.nju.toni.supplychain.entity.Production" >
+        SELECT * FROM Production WHERE validate=0
+    </select>
+
+    <select id="getAllProduction" resultType="com.nju.toni.supplychain.entity.Production" >
+        SELECT * FROM Production
+    </select>
+
+    <select id="getNoValidateProduction" resultType="com.nju.toni.supplychain.entity.Production" >
+        SELECT * FROM Production WHERE validate=1s
+    </select>
+
+    <select id="getNoValidateProduction" resultType="com.nju.toni.supplychain.entity.Production" >
+        SELECT * FROM Production WHERE validate=1s
+    </select>
+</mapper>

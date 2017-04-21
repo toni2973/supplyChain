@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.toni.supplychain.DAO.ValidateProductionDAO">
+
+
+    <insert id="insertValidateProduction" parameterType="com.nju.toni.supplychain.entity.ValidateProductionPO" useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO ValidateProduction(ID,productionID,auditID,validate,,result,comment)
+        VALUES(#{ID},#{productionID},#{auditID}#{valitime},#{result},#{comment})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="findValidateProductionById" resultType="com.nju.toni.supplychain.entity.ValidateProductionPO" parameterType="int">
+        SELECT * FROM ValidateProduction WHERE ID = #{ID}
+    </select>
+
+    <update id="updateValidateProduction" parameterType="com.nju.toni.supplychain.entity.ValidateProductionPO">
+        update ValidateProduction set productionID=#{productionID},auditID=#{auditID},valitime=#{valitime},result=#{result},comment=#{comment}
+        where ID=#{ID}
+    </update>
+
+    <delete id="deleteValidateProduction" parameterType="int">
+        delete from ValidateProduction where ID=#{ID}
+    </delete>
+
+
+
+</mapper>
